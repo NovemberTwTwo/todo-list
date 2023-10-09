@@ -5,6 +5,7 @@ const lightTheme: DefaultTheme = {
 
   colors: {
     brand: '#4300D1',
+    brandSecondary: '#7A4ED9',
     main: '#FFFFFF',
     secondary: '#999999',
     third: '#DBDBDB',
