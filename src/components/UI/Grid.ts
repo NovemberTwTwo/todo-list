@@ -4,8 +4,7 @@ const Grid = styled.div<{ background?: string; opacity?: number }>`
   display: grid;
   grid-column-gap: 20px;
   overflow: visible;
-  width: calc(100vw - 48px);
-  margin: '0 24px 0 24px';
+  margin: 0 24px 0 24px;
   opacity: ${(props) => (props.opacity ? props.opacity : 1)};
   background-color: ${(props) =>
     props.background ? props.background : props.theme.colors.main};
@@ -13,6 +12,7 @@ const Grid = styled.div<{ background?: string; opacity?: number }>`
   // some smalls..
   @media screen and (min-width: 0px) {
     grid-template-columns: repeat(6, 1fr);
+    font-size: 14px;
   }
 
   // Phone - portrait
