@@ -12,7 +12,6 @@ const Grid = styled.div<{ background?: string; opacity?: number }>`
   // some smalls..
   @media screen and (min-width: 0px) {
     grid-template-columns: repeat(6, 1fr);
-    font-size: 14px;
   }
 
   // Phone - portrait
