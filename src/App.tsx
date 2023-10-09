@@ -1,21 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Grid from './components/UI/Grid';
-import Card from './components/UI/Card';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme } from './styles/light-theme';
+import { lightTheme } from './styles/themes/light-theme';
+import LoginForm from './components/Auth/Login/LoginForm';
 
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <Grid>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <LoginForm />
       </Grid>
     </ThemeProvider>
   );
