@@ -6,9 +6,9 @@ const Card = styled.div<{
   marginTop?: number;
   marginBottom?: number;
 }>`
-  display: flex;
   overflow: visible;
   width: 100%;
+  font-family: 'Pretendard';
 
   grid-column-start: ${(props) => (props.start ? props.start : 1)};
   grid-column-end: ${(props) => (props.end ? props.end : 7)};
