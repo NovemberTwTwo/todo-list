@@ -1,38 +1,20 @@
 import { styled } from 'styled-components';
+import { BoxSizing, BoxSpacing, FontSizing } from './PropType/PropTypes';
 
-const TextBox = styled.p<{
-  size?: number;
-  color?: string;
-  weight?: number;
-  $marginTop?: number;
-  $marginBottom?: number;
-  $marginLeft?: number;
-  $marginRight?: number;
-  $lineHeight?: number;
-  width?: string;
-}>`
+interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {}
+
+const TextBox = styled.p<TextBoxProps>`
   box-sizing: border-box;
-  width: calc(${(props) => (props.width ? props.width : 'auto')});
-  min-height: calc(
-    ${(props) => (props.$lineHeight ? props.$lineHeight : 20)} * 1px
-  );
-  margin-left: calc(
-    ${(props) => (props.$marginLeft ? props.$marginLeft : 0)} * 1px
-  );
-  margin-right: calc(
-    ${(props) => (props.$marginRight ? props.$marginRight : 0)} * 1px
-  );
-  margin-top: calc(
-    ${(props) => (props.$marginTop ? props.$marginTop : 0)} * 1px
-  );
-  margin-bottom: calc(
-    ${(props) => (props.$marginBottom ? props.$marginBottom : 0)} * 1px
-  );
-  font-size: calc(${(props) => (props.size ? props.size : 1)} * 1px);
-  font-weight: ${(props) => (props.weight ? props.weight : 400)};
-  line-height: calc(
-    ${(props) => (props.$lineHeight ? props.$lineHeight : 20)} * 1px
-  );
+  width: ${(props) => (props.$width ? props.$width : 'auto')};
+  min-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
+
+  margin: ${(props) => (props.$margin ? props.$margin : '0 0 0 0')};
+  padding: ${(props) => (props.$padding ? props.$padding : '0 0 0 0')};
+
+  font-size: calc(${(props) => (props.$fontSize ? props.$fontSize : 1)} * 1px);
+  font-weight: ${(props) => (props.$fontWeight ? props.$fontWeight : 400)};
+  line-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
+
   color: ${(props) =>
     props.color ? props.color : props.theme.colors.fontMain};
 `;
