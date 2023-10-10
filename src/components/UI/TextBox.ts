@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
-import { BoxSizing, BoxSpacing, FontSizing } from './PropType/PropTypes';
+import { BoxSizing, BoxSpacing, FontSizing } from './types/types';
+import { spacing } from './mixin';
 
 interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {}
 
@@ -8,8 +9,7 @@ const TextBox = styled.p<TextBoxProps>`
   width: ${(props) => (props.$width ? props.$width : 'auto')};
   min-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
 
-  margin: ${(props) => (props.$margin ? props.$margin : '0 0 0 0')};
-  padding: ${(props) => (props.$padding ? props.$padding : '0 0 0 0')};
+  ${spacing}
 
   font-size: calc(${(props) => (props.$fontSize ? props.$fontSize : 1)} * 1px);
   font-weight: ${(props) => (props.$fontWeight ? props.$fontWeight : 400)};

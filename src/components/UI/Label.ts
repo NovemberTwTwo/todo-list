@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FontSizing } from './PropType/PropTypes';
+import { FontSizing } from './types/types';
 
 const Label = styled.label<FontSizing>`
   display: block;
