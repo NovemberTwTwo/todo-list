@@ -11,6 +11,7 @@ const TextInput = styled.input<TextInputProps>`
   border-color: ${(props) => props.theme.colors.third};
   width: ${(props) => (props.$width ? props.$width : 'auto')};
   height: ${(props) => (props.$height ? props.$height : '28px')};
+  box-sizing: border-box;
 
   ${spacing}
 
