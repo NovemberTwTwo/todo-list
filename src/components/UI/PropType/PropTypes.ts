@@ -10,6 +10,8 @@ interface BoxSpacing {
 
 interface FontSizing {
   $fontSize?: number;
+  $lineHeight?: number;
+  $fontWeight?: number;
 }
 
 export type { BoxSizing, BoxSpacing, FontSizing };
