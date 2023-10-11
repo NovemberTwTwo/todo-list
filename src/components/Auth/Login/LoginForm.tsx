@@ -3,6 +3,7 @@ import TextBox from './../../UI/TextBox';
 import { TextInput } from '../../UI/Inputs';
 import Label from '../../UI/Label';
 import { Box } from '../../UI/Boxes';
+import { KeyIcon, UserIcon } from '../../UI/Icons';
 
 const LoginForm = () => {
   return (
@@ -12,11 +13,15 @@ const LoginForm = () => {
       </TextBox>
       <form action=''>
         <Box $margin='0 0 42px 0'>
-          <Label htmlFor=''>아이디 </Label>
+          <Label htmlFor=''>
+            <UserIcon $margin='0 5px 0 0' />
+            아이디
+          </Label>
           <TextInput
             type='text'
             name=''
             id=''
+            $margin='6px 0 0 0'
             $padding={'0 10px 0 10px'}
             $width='80%'
           />
@@ -25,11 +30,15 @@ const LoginForm = () => {
           </TextBox>
         </Box>
         <Box $margin='0 0 42px 0'>
-          <Label htmlFor=''>비밀번호 </Label>
+          <Label htmlFor=''>
+            <KeyIcon $margin='0 5px 0 0' />
+            비밀번호
+          </Label>
           <TextInput
             type='password'
             name=''
             id=''
+            $margin='6px 0 0 0'
             $padding={'0 10px 0 10px'}
             $width='80%'
           />

@@ -14,4 +14,9 @@ interface FontSizing {
   $fontWeight?: number;
 }
 
-export type { BoxSizing, BoxSpacing, FontSizing };
+interface IconColor {
+  $fill?: string;
+  $stroke?: string;
+}
+
+export type { BoxSizing, BoxSpacing, FontSizing, IconColor };
