@@ -1,13 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
-import PretendardBlack from './fonts/Pretendard-Black.woff2';
-import PretendardBold from './fonts/Pretendard-Bold.woff2';
-import PretendardExtraBold from './fonts/Pretendard-ExtraBold.woff2';
-import PretendardExtraLight from './fonts/Pretendard-ExtraLight.woff2';
-import PretendardLight from './fonts/Pretendard-Light.woff2';
-import PretendardMedium from './fonts/Pretendard-Medium.woff2';
-import PretendardRegular from './fonts/Pretendard-Regular.woff2';
-import PretendardSemiBold from './fonts/Pretendard-SemiBold.woff2';
-import PretendardThin from './fonts/Pretendard-Thin.woff2';
+import PretendardBlack from '../assets/fonts/Pretendard-Black.woff2';
+import PretendardBold from '../assets/fonts/Pretendard-Bold.woff2';
+import PretendardExtraBold from '../assets/fonts/Pretendard-ExtraBold.woff2';
+import PretendardExtraLight from '../assets/fonts/Pretendard-ExtraLight.woff2';
+import PretendardLight from '../assets/fonts/Pretendard-Light.woff2';
+import PretendardMedium from '../assets/fonts/Pretendard-Medium.woff2';
+import PretendardRegular from '../assets/fonts/Pretendard-Regular.woff2';
+import PretendardSemiBold from '../assets/fonts/Pretendard-SemiBold.woff2';
+import PretendardThin from '../assets/fonts/Pretendard-Thin.woff2';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
