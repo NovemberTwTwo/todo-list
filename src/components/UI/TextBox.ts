@@ -1,8 +1,10 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { BoxSizing, BoxSpacing, FontSizing } from './types/types';
 import { spacing } from './mixin';
 
-interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {}
+interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {
+  $warning?: boolean;
+}
 
 const TextBox = styled.p<TextBoxProps>`
   box-sizing: border-box;
@@ -17,6 +19,12 @@ const TextBox = styled.p<TextBoxProps>`
 
   color: ${(props) =>
     props.color ? props.color : props.theme.colors.fontMain};
+
+  ${(props) =>
+    props.$warning &&
+    css`
+      color: ${(props) => props.theme.colors.warning} !important;
+    `}
 `;
 
 export default TextBox;

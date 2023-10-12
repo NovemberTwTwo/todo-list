@@ -11,6 +11,7 @@ const lightTheme: DefaultTheme = {
     third: '#DBDBDB',
     fontMain: '#111111',
     fontSecondary: '#767676',
+    warning: '#ED4949',
   },
 
   gaps: {

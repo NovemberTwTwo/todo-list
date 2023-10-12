@@ -12,6 +12,7 @@ declare module 'styled-components' {
       third: string;
       fontMain: string;
       fontSecondary: string;
+      warning: string;
     };
 
     gaps: {
