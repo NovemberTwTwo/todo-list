@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { BoxSizing, BoxSpacing } from './types/types';
 import { spacing } from './mixin';
 
-interface TextInputProps extends BoxSizing, BoxSpacing {}
+interface TextInputProps extends BoxSizing, BoxSpacing {
+  $warning?: boolean;
+}
 
 const TextInput = styled.input<TextInputProps>`
   background-color: transparent !important;
@@ -14,6 +16,13 @@ const TextInput = styled.input<TextInputProps>`
   box-sizing: border-box;
 
   ${spacing}
+
+  ${({ $warning }) =>
+    $warning &&
+    css`
+      outline-color: ${(props) => props.theme.colors.warning};
+      border-color: ${(props) => props.theme.colors.warning};
+    `}
 
   &:focus {
     outline-color: ${(props) => props.theme.colors.brandSecondary};
