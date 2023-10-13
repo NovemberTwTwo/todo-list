@@ -4,18 +4,19 @@ import { spacing } from './mixin';
 
 interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {
   $warning?: boolean;
+  $color?: string;
 }
 
 const TextBox = styled.p<TextBoxProps>`
   box-sizing: border-box;
-  width: ${(props) => (props.$width ? props.$width : 'auto')};
-  min-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
+  width: ${({ $width }) => ($width ? $width : 'auto')};
+  min-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 20)}px;
 
   ${spacing}
 
-  font-size: calc(${(props) => (props.$fontSize ? props.$fontSize : 1)} * 1px);
-  font-weight: ${(props) => (props.$fontWeight ? props.$fontWeight : 400)};
-  line-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
+  font-size: calc(${({ $fontSize }) => ($fontSize ? $fontSize : 1)} * 1px);
+  font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : 400)};
+  line-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 20)}px;
 
   color: ${(props) =>
     props.color ? props.color : props.theme.colors.fontMain};

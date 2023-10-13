@@ -5,8 +5,8 @@ const Label = styled.label<FontSizing>`
   display: flex;
   align-items: center;
   color: ${(props) => props.theme.colors.fontSecondary};
-  font-size: ${(props) => (props.$fontSize ? props.$fontSize : 16)}px;
-  line-height: ${(props) => (props.$lineHeight ? props.$lineHeight : 20)}px;
+  font-size: ${({ $fontSize }) => ($fontSize ? $fontSize : 16)}px;
+  line-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 20)}px;
 `;
 
 export default Label;

@@ -6,8 +6,8 @@ interface BoxProps extends BoxSizing, BoxSpacing {}
 
 const Box = styled.div<BoxProps>`
   display: block;
-  width: ${(props) => (props.$width ? props.$width : 'auto')};
-  height: ${(props) => (props.$height ? props.$height : 'auto')};
+  width: ${({ $width }) => ($width ? $width : 'auto')};
+  height: ${({ $height }) => ($height ? $height : 'auto')};
 
   ${spacing}
 `;

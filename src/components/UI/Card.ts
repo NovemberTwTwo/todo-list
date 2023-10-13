@@ -13,8 +13,8 @@ const Card = styled.div<CardProps>`
   font-family: 'Pretendard';
   letter-spacing: -2.5%;
 
-  grid-column-start: ${(props) => (props.$start ? props.$start : 1)};
-  grid-column-end: ${(props) => (props.$end ? props.$end : 7)};
+  grid-column-start: ${({ $start }) => ($start ? $start : 1)};
+  grid-column-end: ${({ $end }) => ($end ? $end : 7)};
 
   ${spacing}
 `;

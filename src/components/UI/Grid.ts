@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
-const Grid = styled.div<{ background?: string; opacity?: number }>`
+interface GridProps {
+  $background?: string;
+  $opacity?: number;
+}
+
+const Grid = styled.div<GridProps>`
   display: grid;
   grid-column-gap: 20px;
   overflow: visible;
   margin: 0 24px 0 24px;
-  opacity: ${(props) => (props.opacity ? props.opacity : 1)};
+  opacity: ${({ $opacity }) => ($opacity ? $opacity : 1)};
   background-color: ${(props) =>
-    props.background ? props.background : props.theme.colors.main};
+    props.$background ? props.$background : props.theme.colors.main};
 
   // some smalls..
   @media screen and (min-width: 0px) {

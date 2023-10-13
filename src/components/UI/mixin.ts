@@ -8,10 +8,10 @@ const spacing = css<BoxSpacing>`
       margin: ${$margin};
     `}
 
-  ${(props) =>
-    props.$padding &&
+  ${({ $padding }) =>
+    $padding &&
     css`
-      padding: ${props.$padding};
+      padding: ${$padding};
     `}
 `;
 
