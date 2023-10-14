@@ -24,7 +24,7 @@ const LoginForm = () => {
         로그인
       </TextBox>
       <form action=''>
-        <IdentityInput isRegister={true} onChange={setLoginData} />
+        <IdentityInput isRegister={false} onChange={setLoginData} />
         <Box $margin='0 0 42px 0'>
           <Label htmlFor=''>
             <KeyIcon $margin='0 5px 0 0' />
@@ -39,6 +39,7 @@ const LoginForm = () => {
             $width='80%'
           />
         </Box>
+        <button type='submit'>로그인하기</button>
       </form>
     </Card>
   );
