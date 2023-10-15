@@ -1,22 +1,15 @@
-import Card from '../../UI/Card';
-import TextBox from '../../UI/TextBox';
-import { TextInput } from '../../UI/Inputs';
-import Label from '../../UI/Label';
-import { Box } from '../../UI/Boxes';
-import { KeyIcon, UserIcon } from '../../UI/Icons';
-import IdentityInput from './../IdentityInput';
-import { useState } from 'react';
-
-interface LoginData {
-  userId: string;
-  password: string;
-}
+import Card from '../UI/Card';
+import TextBox from '../UI/TextBox';
+import { TextInput } from '../UI/Inputs';
+import Label from '../UI/Label';
+import { Box } from '../UI/Boxes';
+import { KeyIcon } from '../UI/Icons';
+import EmailInput from './EmailInput';
+import { authInitialState, authReducer } from './reducer/AuthReducer';
+import { useReducer } from 'react';
 
 const LoginForm = () => {
-  const [loginData, setLoginData] = useState<LoginData>({
-    userId: '',
-    password: '',
-  });
+  const [loginData, dispatch] = useReducer(authReducer, authInitialState);
 
   return (
     <Card $start={1} $end={7}>
@@ -24,7 +17,13 @@ const LoginForm = () => {
         로그인
       </TextBox>
       <form action=''>
-        <IdentityInput isRegister={false} onChange={setLoginData} />
+        <EmailInput
+          dispatch={dispatch}
+          isError={
+            !loginData.email.isValid && loginData.email.message.length !== 0
+          }
+          errorMessage={loginData.email.message}
+        />
         <Box $margin='0 0 42px 0'>
           <Label htmlFor=''>
             <KeyIcon $margin='0 5px 0 0' />

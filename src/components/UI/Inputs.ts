@@ -20,8 +20,8 @@ const TextInput = styled.input<TextInputProps>`
   ${({ $warning }) =>
     $warning &&
     css`
-      outline-color: ${(props) => props.theme.colors.warning};
-      border-color: ${(props) => props.theme.colors.warning};
+      outline-color: ${(props) => props.theme.colors.warning} !important;
+      border-color: ${(props) => props.theme.colors.warning} !important;
     `}
 
   &:focus {
