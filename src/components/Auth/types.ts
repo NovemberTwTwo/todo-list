@@ -12,6 +12,7 @@ interface AuthInputData {
 }
 
 interface AuthInputProps {
+  isRegister?: boolean;
   dispatch: React.Dispatch<ActionType>;
   isError: boolean;
   errorMessage: string;
