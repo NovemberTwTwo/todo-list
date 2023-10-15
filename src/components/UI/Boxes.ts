@@ -3,13 +3,25 @@ import { BoxSizing, BoxSpacing } from './types/types';
 import { spacing } from './mixin';
 
 interface BoxProps extends BoxSizing, BoxSpacing {}
+interface FlexBoxProps extends BoxProps {
+  $justifyContents?: string;
+}
 
 const Box = styled.div<BoxProps>`
-  display: block;
   width: ${({ $width }) => ($width ? $width : 'auto')};
   height: ${({ $height }) => ($height ? $height : 'auto')};
 
   ${spacing}
 `;
 
-export { Box };
+const FlexBox = styled.div<FlexBoxProps>`
+  display: flex;
+  justify-content: ${({ $justifyContents }) =>
+    $justifyContents ? $justifyContents : 'start'};
+  width: ${({ $width }) => ($width ? $width : 'auto')};
+  height: ${({ $height }) => ($height ? $height : 'auto')};
+
+  ${spacing}
+`;
+
+export { Box, FlexBox };
