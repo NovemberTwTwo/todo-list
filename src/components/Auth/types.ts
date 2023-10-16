@@ -16,6 +16,8 @@ interface AuthInputProps {
   dispatch: React.Dispatch<ActionType>;
   isError: boolean;
   errorMessage: string;
+  children?: React.ReactNode;
+  setPasswordRef?: (inputData: string) => void;
 }
 
 export type { AuthData, AuthInputData, AuthInputProps };

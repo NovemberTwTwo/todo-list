@@ -19,38 +19,52 @@ const PasswordInput = ({
   isError,
   errorMessage,
   isRegister,
+  setPasswordRef,
+  children,
 }: AuthInputProps) => {
   const [inputData, setInputData] = useState<string>('');
 
   useEffect(() => {
-    const timer = setTimeout(
-      () => {
-        if (isRegister) {
-          if (inputData.length === 0) dispatch(passwordNullAction());
-          else if (inputData.length < 8)
-            dispatch(
-              passwordErrorAction('비밀번호는 최소 8자 이상이여야 합니다.'),
-            );
-          else if (!passwordRegex.test(inputData))
-            dispatch(
-              passwordErrorAction(
-                '비밀번호는 영대소문자와 숫자, 특수문자로 구성되어야 합니다.',
-              ),
-            );
-          return;
-        }
-        dispatch(passwordCorrectAction(inputData));
-      },
-      isRegister ? 300 : 0,
-    );
-    return () => clearTimeout(timer);
-  }, [dispatch, inputData, isRegister]);
+    if (!setPasswordRef) {
+      const timer = setTimeout(
+        () => {
+          if (isRegister) {
+            if (inputData.length === 0) {
+              dispatch(passwordNullAction());
+              return;
+            } else if (inputData.length < 8) {
+              dispatch(
+                passwordErrorAction(
+                  inputData,
+                  '비밀번호는 최소 8자 이상이여야 합니다',
+                ),
+              );
+              return;
+            } else if (!passwordRegex.test(inputData)) {
+              dispatch(
+                passwordErrorAction(
+                  inputData,
+                  '비밀번호는 최소 1개 이상의 영어 대문자, 소문자 그리고 숫자와 특수문자를 포함하여야 합니다.',
+                ),
+              );
+              return;
+            }
+          }
+          dispatch(passwordCorrectAction(inputData));
+        },
+        isRegister ? 300 : 0,
+      );
+      return () => clearTimeout(timer);
+    } else {
+      setPasswordRef(inputData);
+    }
+  }, [dispatch, inputData, isRegister, setPasswordRef]);
 
   return (
     <Box $margin='0 0 42px 0'>
       <Label htmlFor='Email'>
         <KeyIcon $margin='0 5px 0 0' />
-        비밀번호
+        {children}
       </Label>
       <FlexBox $justifyContents='space-between'>
         <TextInput
@@ -58,13 +72,17 @@ const PasswordInput = ({
           name='Email'
           $margin='6px 0 0 0'
           $padding={'0 10px 0 10px'}
-          $width='80%'
+          $width='100%'
           $warning={isError}
           value={inputData || ''}
           onChange={(e) => setInputData(e.target.value)}
         />
       </FlexBox>
-      <TextBox $fontSize={14} $margin={'4px 10px 0 10px'} $warning={isError}>
+      <TextBox
+        $fontSize={14}
+        $margin={'4px 10px 0 10px'}
+        $warning={isError}
+        $height='40px'>
         {errorMessage}
       </TextBox>
     </Box>

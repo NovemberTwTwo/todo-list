@@ -1,12 +1,11 @@
 import Card from '../UI/Card';
 import TextBox from '../UI/TextBox';
-import { TextInput } from '../UI/Inputs';
-import Label from '../UI/Label';
-import { Box } from '../UI/Boxes';
-import { KeyIcon } from '../UI/Icons';
 import EmailInput from './EmailInput';
 import { authInitialState, authReducer } from './reducer/AuthReducer';
 import { useReducer } from 'react';
+import PasswordInput from './PasswordInput';
+import Button from '../UI/Button';
+import { FlexBox } from '../UI/Boxes';
 
 const LoginForm = () => {
   const [loginData, dispatch] = useReducer(authReducer, authInitialState);
@@ -24,21 +23,24 @@ const LoginForm = () => {
           }
           errorMessage={loginData.email.message}
         />
-        <Box $margin='0 0 42px 0'>
-          <Label htmlFor=''>
-            <KeyIcon $margin='0 5px 0 0' />
-            비밀번호
-          </Label>
-          <TextInput
-            type='password'
-            name=''
-            id=''
-            $margin='6px 0 0 0'
-            $padding={'0 10px 0 10px'}
-            $width='80%'
-          />
-        </Box>
-        <button type='submit'>로그인하기</button>
+        <PasswordInput
+          dispatch={dispatch}
+          isError={
+            !loginData.password.isValid &&
+            loginData.password.message.length !== 0
+          }
+          errorMessage={loginData.password.message}
+        />
+        <FlexBox $justifyContents='center'>
+          <Button
+            type='submit'
+            $fontSize={16}
+            $lineHeight={20}
+            $borderRadius={20}
+            $width='30%'>
+            로그인하기
+          </Button>
+        </FlexBox>
       </form>
     </Card>
   );
