@@ -34,13 +34,13 @@ const Button = styled.button<ButtonProps>`
   ${({ $fontSize }) =>
     $fontSize &&
     css`
-      font-size: ${$fontSize};
+      font-size: ${$fontSize}px;
     `}
 
   ${({ $lineHeight }) =>
     $lineHeight &&
     css`
-      line-height: ${$lineHeight};
+      line-height: ${$lineHeight}px;
     `}
 
   ${({ $fontWeight }) =>

@@ -10,6 +10,7 @@ interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {
 const TextBox = styled.p<TextBoxProps>`
   box-sizing: border-box;
   width: ${({ $width }) => ($width ? $width : 'auto')};
+  height: ${({ $height }) => ($height ? $height : 'auto')};
   min-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 20)}px;
 
   ${spacing}
