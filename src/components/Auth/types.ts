@@ -1,4 +1,4 @@
-import { ActionType } from './reducer/AuthReducer';
+import { ActionType } from '../../core/reducer/authReducer';
 
 interface AuthData {
   email: AuthInputData;

@@ -1,4 +1,4 @@
-import { AuthData } from '../types';
+import { AuthData } from '../../components/Auth/types';
 
 const EMAIL_NULL: string = 'EMAIL_NULL';
 const EMAIL_ERROR: string = 'EMAIL_ERROR';

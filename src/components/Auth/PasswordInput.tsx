@@ -9,7 +9,7 @@ import {
   passwordCorrectAction,
   passwordErrorAction,
   passwordNullAction,
-} from './reducer/AuthReducer';
+} from '../../core/reducer/authReducer';
 
 const passwordRegex: RegExp =
   /^.*(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\[\]\{\}\/\(\)\.\?\<\,\>\!\@\#\$\%\^\&]).*$/;

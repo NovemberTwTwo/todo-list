@@ -9,7 +9,7 @@ import {
   emailCorrectAction,
   emailErrorAction,
   emailNullAction,
-} from './reducer/AuthReducer';
+} from '../../core/reducer/authReducer';
 import Button from '../UI/Button';
 
 const emailRegex: RegExp = /\w+@[a-z]+.[a-z.]+/;

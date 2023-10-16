@@ -1,7 +1,7 @@
 import Card from '../UI/Card';
 import TextBox from '../UI/TextBox';
 import EmailInput from './EmailInput';
-import { authInitialState, authReducer } from './reducer/AuthReducer';
+import { authInitialState, authReducer } from '../../core/reducer/authReducer';
 import { useReducer } from 'react';
 import PasswordInput from './PasswordInput';
 import Button from '../UI/Button';
