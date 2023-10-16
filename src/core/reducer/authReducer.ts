@@ -10,7 +10,7 @@ const PASSWORD_CORRECT: string = 'PASSWORD_CORRECT';
 interface ActionType {
   type: string;
   payload: string;
-  error: string;
+  message: string;
 }
 
 const authInitialState: AuthData = {
@@ -43,7 +43,7 @@ const authReducer = (state: AuthData, action: ActionType): AuthData => {
         email: {
           data: action.payload,
           isValid: false,
-          message: action.error,
+          message: action.message,
         },
       };
     case EMAIL_CORRECT:
@@ -70,7 +70,7 @@ const authReducer = (state: AuthData, action: ActionType): AuthData => {
         password: {
           data: '',
           isValid: false,
-          message: action.error,
+          message: action.message,
         },
       };
     case PASSWORD_CORRECT:
@@ -79,7 +79,7 @@ const authReducer = (state: AuthData, action: ActionType): AuthData => {
         password: {
           data: action.payload,
           isValid: true,
-          message: '올바른 비밀번호 형식입니다',
+          message: action.message,
         },
       };
     default:
@@ -88,33 +88,36 @@ const authReducer = (state: AuthData, action: ActionType): AuthData => {
 };
 
 const emailNullAction = (): ActionType => {
-  return { type: EMAIL_NULL, payload: '', error: '' };
+  return { type: EMAIL_NULL, payload: '', message: '' };
 };
 
 const emailErrorAction = (
   inputValue: string,
   errorMessage: string,
 ): ActionType => {
-  return { type: EMAIL_ERROR, payload: inputValue, error: errorMessage };
+  return { type: EMAIL_ERROR, payload: inputValue, message: errorMessage };
 };
 
 const emailCorrectAction = (inputValue: string): ActionType => {
-  return { type: EMAIL_CORRECT, payload: inputValue, error: '' };
+  return { type: EMAIL_CORRECT, payload: inputValue, message: '' };
 };
 
 const passwordNullAction = (): ActionType => {
-  return { type: PASSWORD_NULL, payload: '', error: '' };
+  return { type: PASSWORD_NULL, payload: '', message: '' };
 };
 
 const passwordErrorAction = (
   inputValue: string,
   errorMessage: string,
 ): ActionType => {
-  return { type: PASSWORD_ERROR, payload: inputValue, error: errorMessage };
+  return { type: PASSWORD_ERROR, payload: inputValue, message: errorMessage };
 };
 
-const passwordCorrectAction = (inputValue: string): ActionType => {
-  return { type: PASSWORD_CORRECT, payload: inputValue, error: '' };
+const passwordCorrectAction = (
+  inputValue: string,
+  message: string = '',
+): ActionType => {
+  return { type: PASSWORD_CORRECT, payload: inputValue, message };
 };
 
 export {

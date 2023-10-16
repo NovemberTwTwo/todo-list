@@ -24,22 +24,17 @@ const RegisterForm = () => {
   };
 
   const firebaseRegister = async () => {
-    try {
-      const createdUser = await createUserWithEmailAndPassword(
-        firebaseAuth,
-        registerData.email.data,
-        registerData.password.data,
-      );
-      console.log(createdUser);
-    } catch (err) {
-      console.log(err);
-    }
+    await createUserWithEmailAndPassword(
+      firebaseAuth,
+      registerData.email.data,
+      registerData.password.data,
+    )
+      .then((userCredential) => {})
+      .catch((err) => {});
   };
 
   const registerSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     const { email, password } = registerData;
-    console.log(passwordRef.current);
-    console.log(registerData.password);
     e.preventDefault();
     if (registerData.password.data !== passwordRef.current) {
       setIsChecked(false);

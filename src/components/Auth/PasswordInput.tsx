@@ -25,37 +25,30 @@ const PasswordInput = ({
   const [inputData, setInputData] = useState<string>('');
 
   useEffect(() => {
-    if (!setPasswordRef) {
-      const timer = setTimeout(
-        () => {
-          if (isRegister) {
-            if (inputData.length === 0) {
-              dispatch(passwordNullAction());
-              return;
-            } else if (inputData.length < 8) {
-              dispatch(
-                passwordErrorAction(
-                  inputData,
-                  '비밀번호는 최소 8자 이상이여야 합니다',
-                ),
-              );
-              return;
-            } else if (!passwordRegex.test(inputData)) {
-              dispatch(
-                passwordErrorAction(
-                  inputData,
-                  '비밀번호는 최소 1개 이상의 영어 대문자, 소문자 그리고 숫자와 특수문자를 포함하여야 합니다.',
-                ),
-              );
-              return;
-            }
-          }
-          dispatch(passwordCorrectAction(inputData));
-        },
-        isRegister ? 300 : 0,
-      );
+    if (!setPasswordRef && isRegister) {
+      const timer = setTimeout(() => {
+        if (inputData.length === 0) dispatch(passwordNullAction());
+        else if (inputData.length < 8)
+          dispatch(
+            passwordErrorAction(
+              inputData,
+              '비밀번호는 최소 8자 이상이여야 합니다',
+            ),
+          );
+        else if (!passwordRegex.test(inputData))
+          dispatch(
+            passwordErrorAction(
+              inputData,
+              '비밀번호는 최소 1개 이상의 영어 대문자, 소문자 그리고 숫자와 특수문자를 포함하여야 합니다',
+            ),
+          );
+        else
+          dispatch(
+            passwordCorrectAction(inputData, '올바른 비밀번호 형식입니다'),
+          );
+      }, 300);
       return () => clearTimeout(timer);
-    } else {
+    } else if (setPasswordRef) {
       setPasswordRef(inputData);
     }
   }, [dispatch, inputData, isRegister, setPasswordRef]);
@@ -75,7 +68,10 @@ const PasswordInput = ({
           $width='100%'
           $warning={isError}
           value={inputData || ''}
-          onChange={(e) => setInputData(e.target.value)}
+          onChange={(e) => {
+            if (isRegister) setInputData(e.target.value);
+            else dispatch(passwordCorrectAction(e.target.value));
+          }}
         />
       </FlexBox>
       <TextBox

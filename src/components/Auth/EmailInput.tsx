@@ -23,24 +23,15 @@ const EmailInput = ({
   const [inputData, setInputData] = useState<string>('');
 
   useEffect(() => {
-    console.log(inputData);
-    console.log(emailRegex.test(inputData));
-    const timer = setTimeout(
-      () => {
-        if (isRegister) {
-          if (inputData.length === 0) {
-            dispatch(emailNullAction());
-            return;
-          } else if (!emailRegex.test(inputData)) {
-            dispatch(emailErrorAction(inputData, '잘못된 이메일 형식입니다'));
-            return;
-          }
-        }
-        dispatch(emailCorrectAction(inputData));
-      },
-      isRegister ? 300 : 0,
-    );
-    return () => clearTimeout(timer);
+    if (isRegister) {
+      const timer = setTimeout(() => {
+        if (inputData.length === 0) dispatch(emailNullAction());
+        else if (!emailRegex.test(inputData))
+          dispatch(emailErrorAction(inputData, '잘못된 이메일 형식입니다'));
+        else dispatch(emailCorrectAction(inputData));
+      }, 300);
+      return () => clearTimeout(timer);
+    }
   }, [dispatch, inputData, isRegister]);
 
   return (
@@ -57,7 +48,10 @@ const EmailInput = ({
           $width={isRegister ? '75%' : '100%'}
           $warning={isError}
           value={inputData || ''}
-          onChange={(e) => setInputData(e.target.value)}
+          onChange={(e) => {
+            if (isRegister) setInputData(e.target.value);
+            else dispatch(emailCorrectAction(e.target.value));
+          }}
         />
         {isRegister && (
           <Button
