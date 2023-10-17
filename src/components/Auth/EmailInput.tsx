@@ -49,8 +49,8 @@ const EmailInput = ({
           $warning={isError}
           value={inputData || ''}
           onChange={(e) => {
-            if (isRegister) setInputData(e.target.value);
-            else dispatch(emailCorrectAction(e.target.value));
+            setInputData(e.target.value);
+            if (!isRegister) dispatch(emailCorrectAction(e.target.value));
           }}
         />
         {isRegister && (

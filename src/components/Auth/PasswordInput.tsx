@@ -69,8 +69,8 @@ const PasswordInput = ({
           $warning={isError}
           value={inputData || ''}
           onChange={(e) => {
-            if (isRegister) setInputData(e.target.value);
-            else dispatch(passwordCorrectAction(e.target.value));
+            setInputData(e.target.value);
+            if (!isRegister) dispatch(passwordCorrectAction(e.target.value));
           }}
         />
       </FlexBox>
