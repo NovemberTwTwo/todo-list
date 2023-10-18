@@ -1,4 +1,5 @@
 const ROUTE = 'ROUTE';
+const POP_STATE = 'POP_STATE';
 
 interface RouteData {
   url: string;
@@ -14,10 +15,13 @@ const routeInitialState: RouteData = {
 };
 
 const routeReducer = (state: RouteData, action: RouteAction): RouteData => {
-  window.history.pushState(action.payload, '', action.payload);
-
   switch (action.type) {
     case ROUTE:
+      return {
+        ...state,
+        url: action.payload,
+      };
+    case POP_STATE:
       return {
         ...state,
         url: action.payload,
@@ -28,8 +32,13 @@ const routeReducer = (state: RouteData, action: RouteAction): RouteData => {
 };
 
 const routeAction = (url: string): RouteAction => {
+  window.history.pushState(null, '', url);
   return { type: ROUTE, payload: url };
 };
 
-export { routeInitialState, routeReducer, routeAction };
+const popAction = (url: string): RouteAction => {
+  return { type: POP_STATE, payload: url };
+};
+
+export { routeInitialState, routeReducer, routeAction, popAction };
 export type { RouteAction };

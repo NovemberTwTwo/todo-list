@@ -4,8 +4,13 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './styles/themes/light-theme';
 import LoginForm from './components/Auth/LoginForm';
 import RegisterForm from './components/Auth/RegisterForm';
-import { useReducer } from 'react';
-import { routeInitialState, routeReducer } from './core/reducer/routeReducer';
+import { useEffect, useReducer } from 'react';
+import {
+  popAction,
+  routeAction,
+  routeInitialState,
+  routeReducer,
+} from './core/reducer/routeReducer';
 import {
   RouterDispatchContext,
   RouterStateContext,
@@ -14,6 +19,34 @@ import Route from './components/Route/Route';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
+
+  const preventClose = (e: BeforeUnloadEvent) => {
+    // e.preventDefault();
+    // e.returnValue = '';
+    // eslint-disable-next-line no-restricted-globals
+    // dispatch(routeAction(location.pathname));
+  };
+
+  const testPopstate = (event: any) => {
+    event.preventDefault();
+    //eslint-disable-next-line no-restricted-globals
+    console.log(location.pathname);
+    //eslint-disable-next-line no-restricted-globals
+    dispatch(popAction(location.pathname));
+  };
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener('popstate', testPopstate);
+    })();
+    (() => {
+      window.addEventListener('beforeunload', preventClose);
+    })();
+    return () => {
+      window.removeEventListener('popstate', testPopstate);
+      window.removeEventListener('beforeunload', preventClose);
+    };
+  }, []);
 
   return (
     <ThemeProvider theme={lightTheme}>
