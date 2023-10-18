@@ -49,7 +49,7 @@ const RegisterForm = () => {
   return (
     <Card $start={1} $end={7}>
       <TextBox $fontSize={28} $lineHeight={32} $margin={'0 0 42px 0'}>
-        로그인
+        회원가입
       </TextBox>
       <form onSubmit={registerSubmitHandler}>
         <EmailInput
