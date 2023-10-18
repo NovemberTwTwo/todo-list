@@ -1,4 +1,4 @@
-import { ActionType } from '../../core/reducer/authReducer';
+import { AuthAction } from '../../core/reducer/authReducer';
 
 interface AuthData {
   email: AuthInputData;
@@ -13,7 +13,7 @@ interface AuthInputData {
 
 interface AuthInputProps {
   isRegister?: boolean;
-  dispatch: React.Dispatch<ActionType>;
+  dispatch: React.Dispatch<AuthAction>;
   isError: boolean;
   errorMessage: string;
   children?: React.ReactNode;
