@@ -13,10 +13,13 @@ import Button from '../UI/Button';
 import { FlexBox } from '../UI/Boxes';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth } from '../../core/firebase/firebaseConfig';
+import useRouterDispatch from '../../hooks/useRouterDispatch';
+import { routeAction } from '../../core/reducer/routeReducer';
 
 const LoginForm = () => {
   const [loginData, dispatch] = useReducer(authReducer, authInitialState);
   const [authErrorMessage, setAuthErrorMessage] = useState<string>('');
+  const routeDispatch = useRouterDispatch();
 
   useEffect(() => {
     setAuthErrorMessage('');
@@ -28,7 +31,9 @@ const LoginForm = () => {
       loginData.email.data,
       loginData.password.data,
     )
-      .then((userCredential) => {})
+      .then((userCredential) => {
+        routeDispatch(routeAction('/register'));
+      })
       .catch(({ code }) => {
         if (code === 'auth/invalid-login-credentials')
           setAuthErrorMessage('잘못된 비밀번호 혹은 존재하지 않는 계정입니다.');
