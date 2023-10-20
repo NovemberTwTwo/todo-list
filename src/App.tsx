@@ -7,7 +7,6 @@ import RegisterForm from './components/Auth/RegisterForm';
 import { useEffect, useReducer } from 'react';
 import {
   popAction,
-  routeAction,
   routeInitialState,
   routeReducer,
 } from './core/reducer/routeReducer';
@@ -28,7 +27,6 @@ function App() {
   };
 
   const testPopstate = (event: any) => {
-    event.preventDefault();
     //eslint-disable-next-line no-restricted-globals
     console.log(location.pathname);
     //eslint-disable-next-line no-restricted-globals
