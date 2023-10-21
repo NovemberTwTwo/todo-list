@@ -32,7 +32,7 @@ const routeReducer = (state: RouteData, action: RouteAction): RouteData => {
 };
 
 const routeAction = (url: string): RouteAction => {
-  window.history.pushState(null, '', url);
+  window.history.pushState(url, '', url);
   return { type: ROUTE, payload: url };
 };
 

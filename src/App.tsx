@@ -28,8 +28,6 @@ function App() {
 
   const testPopstate = (event: any) => {
     //eslint-disable-next-line no-restricted-globals
-    console.log(location.pathname);
-    //eslint-disable-next-line no-restricted-globals
     dispatch(popAction(location.pathname));
   };
 
