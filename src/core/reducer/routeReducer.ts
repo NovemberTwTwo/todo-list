@@ -11,7 +11,8 @@ interface RouteAction {
 }
 
 const routeInitialState: RouteData = {
-  url: '/',
+  // eslint-disable-next-line no-restricted-globals
+  url: location.pathname,
 };
 
 const routeReducer = (state: RouteData, action: RouteAction): RouteData => {

@@ -19,28 +19,17 @@ import Route from './components/Route/Route';
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
 
-  const preventClose = (e: BeforeUnloadEvent) => {
-    // e.preventDefault();
-    // e.returnValue = '';
-    // eslint-disable-next-line no-restricted-globals
-    // dispatch(routeAction(location.pathname));
-  };
-
-  const testPopstate = (event: any) => {
+  const handleSessionRoute = () => {
     //eslint-disable-next-line no-restricted-globals
     dispatch(popAction(location.pathname));
   };
 
   useEffect(() => {
     (() => {
-      window.addEventListener('popstate', testPopstate);
-    })();
-    (() => {
-      window.addEventListener('beforeunload', preventClose);
+      window.addEventListener('popstate', handleSessionRoute);
     })();
     return () => {
-      window.removeEventListener('popstate', testPopstate);
-      window.removeEventListener('beforeunload', preventClose);
+      window.removeEventListener('popstate', handleSessionRoute);
     };
   }, []);
 
