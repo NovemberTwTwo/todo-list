@@ -91,7 +91,7 @@ const LoginForm = () => {
             $fontSize={16}
             $lineHeight={20}
             $borderRadius={20}
-            $width='30%'>
+            $width='100px'>
             로그인하기
           </Button>
         </FlexBox>
