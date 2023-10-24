@@ -5,6 +5,7 @@ import { spacing } from './mixin';
 interface TextBoxProps extends BoxSizing, BoxSpacing, FontSizing {
   $warning?: boolean;
   $color?: string;
+  $alignCenter?: boolean;
 }
 
 const TextBox = styled.p<TextBoxProps>`
@@ -12,6 +13,13 @@ const TextBox = styled.p<TextBoxProps>`
   width: ${({ $width }) => ($width ? $width : 'auto')};
   height: ${({ $height }) => ($height ? $height : 'auto')};
   min-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 20)}px;
+
+  ${({ $alignCenter }) =>
+    $alignCenter &&
+    css`
+      display: flex;
+      align-items: center;
+    `}
 
   ${spacing}
 

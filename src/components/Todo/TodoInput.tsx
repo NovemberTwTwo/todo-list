@@ -1,5 +1,6 @@
 import { Box, FlexBox } from '../UI/Boxes';
 import Card from '../UI/Card';
+import { ArrowIcon, CalenderIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
 import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
@@ -11,31 +12,50 @@ const TodoInput = () => {
         <TextBox $fontSize={28} $lineHeight={32} $margin='0 0 0 0'>
           목표 추가하기
         </TextBox>
-        <TextBox $fontSize={12} $lineHeight={16} $margin='0 0 0 0'>
+        <TextBox
+          $fontSize={12}
+          $lineHeight={16}
+          $margin='0 0 0 0'
+          $alignCenter={true}>
           이전 페이지로
+          <ArrowIcon />
         </TextBox>
       </FlexBox>
       <hr />
-      <Box>
-        <Label>목표명</Label>
+      <Box $margin='0 0 42px 0'>
+        <Label>
+          <TitleIcon $margin='0 4px 0 0' />
+          목표명
+        </Label>
         <CommonInput
+          $margin='6px 0 0 0'
           type='text'
           name='GoalName'
           $padding='0 10px 0 10px'
           $width='100%'></CommonInput>
       </Box>
-      <Box>
-        <Label>기간</Label>
-        <FlexBox $width='100%' $justifyContents='space-between'>
+      <Box $margin='0 0 42px 0'>
+        <Label>
+          <CalenderIcon $margin='0 4px 0 0' />
+          기간
+        </Label>
+        <FlexBox
+          $width='100%'
+          $justifyContents='space-between'
+          $margin='6px 0 0 0'>
           <CommonInput type='date' $padding='0 10px 0 10px' $width='45%' />
           <CommonInput type='date' $padding='0 10px 0 10px' $width='45%' />
         </FlexBox>
       </Box>
-      <Box>
-        <Label>상세 내용</Label>
+      <Box $margin='0 0 42px 0'>
+        <Label>
+          <DocumentIcon $margin='0 4px 0 0' />
+          상세 내용
+        </Label>
         <CommonInput
           as='textarea'
           $padding='15px 15px 15px 15px'
+          $margin='6px 0 0 0'
           $width='100%'
           $minHeight='200px'
           $maxHeight='400px'

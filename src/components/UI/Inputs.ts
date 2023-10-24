@@ -15,6 +15,7 @@ const CommonInput = styled.input<CommonInputProps>`
   height: ${({ $height }) => ($height ? $height : '28px')};
   box-sizing: border-box;
   font-family: 'Pretendard';
+  resize: none;
 
   ${spacing}
 
