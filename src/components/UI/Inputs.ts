@@ -14,8 +14,21 @@ const CommonInput = styled.input<CommonInputProps>`
   width: ${({ $width }) => ($width ? $width : 'auto')};
   height: ${({ $height }) => ($height ? $height : '28px')};
   box-sizing: border-box;
+  font-family: 'Pretendard';
 
   ${spacing}
+
+  ${({ $minWidth }) =>
+    $minWidth &&
+    css`
+      min-width: ${$minWidth};
+    `}
+  
+    ${({ $minHeight }) =>
+    $minHeight &&
+    css`
+      min-height: ${$minHeight};
+    `}
 
   ${({ $warning }) =>
     $warning &&

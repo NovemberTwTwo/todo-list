@@ -1,6 +1,8 @@
 interface BoxSizing {
   $width?: string;
   $height?: string;
+  $minWidth?: string;
+  $minHeight?: string;
 }
 
 interface BoxSpacing {
