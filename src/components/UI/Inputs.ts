@@ -24,10 +24,22 @@ const CommonInput = styled.input<CommonInputProps>`
       min-width: ${$minWidth};
     `}
   
-    ${({ $minHeight }) =>
+  ${({ $minHeight }) =>
     $minHeight &&
     css`
       min-height: ${$minHeight};
+    `}
+
+  ${({ $maxWidth }) =>
+    $maxWidth &&
+    css`
+      max-width: ${$maxWidth};
+    `}
+
+  ${({ $maxHeight }) =>
+    $maxHeight &&
+    css`
+      max-height: ${$maxHeight};
     `}
 
   ${({ $warning }) =>
