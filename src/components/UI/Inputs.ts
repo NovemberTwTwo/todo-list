@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { BoxSizing, BoxSpacing } from './types/types';
+import { BoxSizing, BoxSpacing, FontSizing } from './types/types';
 import { spacing } from './mixin';
 
-interface CommonInputProps extends BoxSizing, BoxSpacing {
+interface CommonInputProps extends BoxSizing, BoxSpacing, FontSizing {
   $warning?: boolean;
 }
 
@@ -17,6 +17,18 @@ const CommonInput = styled.input<CommonInputProps>`
   font-family: 'Pretendard';
 
   ${spacing}
+
+  ${({ $fontSize }) =>
+    $fontSize &&
+    css`
+      font-size: ${$fontSize}px;
+    `}
+  
+  ${({ $lineHeight }) =>
+    $lineHeight &&
+    css`
+      line-height: ${$lineHeight}px;
+    `}
 
   ${({ $minWidth }) =>
     $minWidth &&
