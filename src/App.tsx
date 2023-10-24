@@ -15,6 +15,7 @@ import {
   RouterStateContext,
 } from './core/context/RouterContext';
 import Route from './components/Route/Route';
+import TodoInput from './components/Todo/TodoInput';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Route url='/register'>
               <RegisterForm />
+            </Route>
+            <Route url='/formtest'>
+              <TodoInput />
             </Route>
           </Grid>
         </RouterStateContext.Provider>

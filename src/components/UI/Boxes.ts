@@ -18,6 +18,7 @@ const FlexBox = styled.div<FlexBoxProps>`
   display: flex;
   justify-content: ${({ $justifyContents }) =>
     $justifyContents ? $justifyContents : 'start'};
+  align-items: end;
   width: ${({ $width }) => ($width ? $width : 'auto')};
   height: ${({ $height }) => ($height ? $height : 'auto')};
 
