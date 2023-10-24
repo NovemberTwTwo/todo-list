@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import { BoxSizing, BoxSpacing } from './types/types';
 import { spacing } from './mixin';
 
-interface TextInputProps extends BoxSizing, BoxSpacing {
+interface CommonInputProps extends BoxSizing, BoxSpacing {
   $warning?: boolean;
 }
 
-const TextInput = styled.input<TextInputProps>`
+const CommonInput = styled.input<CommonInputProps>`
   background-color: transparent !important;
   border-radius: ${(props) => props.theme.borderRadius};
   border: 1px solid;
@@ -49,4 +49,4 @@ const TextInput = styled.input<TextInputProps>`
   }
 `;
 
-export { TextInput };
+export { CommonInput };

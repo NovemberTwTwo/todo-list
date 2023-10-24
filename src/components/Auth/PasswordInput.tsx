@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, FlexBox } from '../UI/Boxes';
 import { KeyIcon } from '../UI/Icons';
-import { TextInput } from '../UI/Inputs';
+import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
 import { AuthInputProps } from './types';
@@ -60,7 +60,7 @@ const PasswordInput = ({
         {children}
       </Label>
       <FlexBox $justifyContents='space-between'>
-        <TextInput
+        <CommonInput
           type='password'
           name='Email'
           $margin='6px 0 0 0'
@@ -68,7 +68,7 @@ const PasswordInput = ({
           $width='100%'
           $warning={isError}
           value={inputData || ''}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setInputData(e.target.value);
             if (!isRegister) dispatch(passwordCorrectAction(e.target.value));
           }}

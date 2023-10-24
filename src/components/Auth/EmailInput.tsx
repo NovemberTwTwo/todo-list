@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, FlexBox } from '../UI/Boxes';
 import { EmailIcon } from '../UI/Icons';
-import { TextInput } from '../UI/Inputs';
+import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
 import { AuthInputProps } from './types';
@@ -41,7 +41,7 @@ const EmailInput = ({
         이메일
       </Label>
       <FlexBox $justifyContents='space-between' $margin='6px 0 0 0'>
-        <TextInput
+        <CommonInput
           type='text'
           name='Email'
           $padding={'0 10px 0 10px'}

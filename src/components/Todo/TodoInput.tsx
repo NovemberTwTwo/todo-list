@@ -1,6 +1,6 @@
 import { Box, FlexBox } from '../UI/Boxes';
 import Card from '../UI/Card';
-import { TextInput } from '../UI/Inputs';
+import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
 
@@ -18,7 +18,11 @@ const TodoInput = () => {
       <hr />
       <Box>
         <Label>목표명</Label>
-        <TextInput type='text' name='GoalName'></TextInput>
+        <CommonInput type='text' name='GoalName' $width='100%'></CommonInput>
+      </Box>
+      <Box>
+        <Label>기간</Label>
+        <FlexBox></FlexBox>
       </Box>
     </Card>
   );
