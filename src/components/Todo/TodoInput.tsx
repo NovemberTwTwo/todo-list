@@ -65,7 +65,6 @@ const TodoInput = () => {
           $fontSize={14}
           $lineHeight={16}
           onInput={({ target }: React.FormEvent<HTMLTextAreaElement>) => {
-            console.log((target as HTMLTextAreaElement).scrollHeight);
             (target as HTMLTextAreaElement).style.height = '';
             (target as HTMLTextAreaElement).style.height =
               (target as HTMLTextAreaElement).scrollHeight + 'px';
