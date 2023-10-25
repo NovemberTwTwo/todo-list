@@ -40,6 +40,9 @@ function App() {
         <RouterStateContext.Provider value={sessionState.url}>
           <Grid>
             <Route url='/'>
+              <div></div>
+            </Route>
+            <Route url='/login'>
               <LoginForm />
             </Route>
             <Route url='/register'>
