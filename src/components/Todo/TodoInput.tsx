@@ -13,6 +13,9 @@ const TodoInput = () => {
           목표 추가하기
         </TextBox>
         <TextBox
+          onClick={() => {
+            window.history.back();
+          }}
           $fontSize={12}
           $lineHeight={16}
           $margin='0 0 0 0'
