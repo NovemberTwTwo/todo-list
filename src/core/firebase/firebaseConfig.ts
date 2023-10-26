@@ -10,7 +10,7 @@ const firebaseConfig = {
   messagingSenderId: `${process.env.REACT_APP_FIREBASE_SENDER_ID}`,
   appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
   measurementId: `${process.env.REACT_APP_FIREBASE_MEASURE_ID}`,
-  databaseURL: `${process.env.REACT_APP_FIREABASE_DATABASE_NAME}`,
+  databaseURL: `${process.env.REACT_APP_FIREBASE_DATABASE_NAME}`,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
