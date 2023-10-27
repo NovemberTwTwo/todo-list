@@ -32,7 +32,8 @@ const LoginForm = () => {
       loginData.password.data,
     )
       .then((userCredential) => {
-        routeDispatch(routeAction('/register'));
+        console.log(userCredential);
+        routeDispatch(routeAction('/'));
       })
       .catch(({ code }) => {
         if (code === 'auth/invalid-login-credentials')
