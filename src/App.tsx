@@ -16,9 +16,14 @@ import {
 } from './core/context/RouterContext';
 import Route from './components/Route/Route';
 import TodoInput from './components/Todo/TodoInput';
+import { tokenInitialState, tokenReducer } from './core/reducer/tokenReducer';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
+  const [userToken, tokenDispatch] = useReducer(
+    tokenReducer,
+    tokenInitialState,
+  );
 
   const handleSessionRoute = () => {
     //eslint-disable-next-line no-restricted-globals
