@@ -15,10 +15,12 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth } from '../../core/firebase/firebaseConfig';
 import useRouterDispatch from '../../hooks/useRouterDispatch';
 import { routeAction } from '../../core/reducer/routeReducer';
+import useUserTokenState from '../../hooks/useUserTokenState';
 
 const LoginForm = () => {
   const [loginData, dispatch] = useReducer(authReducer, authInitialState);
   const [authErrorMessage, setAuthErrorMessage] = useState<string>('');
+  const { setUserToken } = useUserTokenState();
   const routeDispatch = useRouterDispatch();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const LoginForm = () => {
       loginData.password.data,
     )
       .then((userCredential) => {
-        console.log(userCredential);
+        setUserToken(userCredential.user.refreshToken);
         routeDispatch(routeAction('/'));
       })
       .catch(({ code }) => {
