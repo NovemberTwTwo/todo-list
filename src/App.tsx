@@ -36,6 +36,10 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(userToken);
+  }, [userToken]);
+
   return (
     <ThemeProvider theme={lightTheme}>
       <UserTokenContext.Provider value={{ userToken, setUserToken }}>
