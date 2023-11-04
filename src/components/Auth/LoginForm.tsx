@@ -34,7 +34,7 @@ const LoginForm = () => {
       loginData.password.data,
     )
       .then((userCredential) => {
-        setUserToken(userCredential.user.refreshToken);
+        setUserToken(userCredential.user.uid);
         routeDispatch(routeAction('/'));
       })
       .catch(({ code }) => {

@@ -7,14 +7,16 @@ import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
 import { getDatabase, ref, set } from 'firebase/database';
 import Button from './../UI/Button';
+import useUserTokenState from '../../hooks/useUserTokenState';
 
 const TodoInput = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const { userToken } = useUserTokenState();
 
   const writeTestData = () => {
     const db = getDatabase();
-    set(ref(db, 'testdatas/'), {
+    set(ref(db, `users/${userToken}/todos`), {
       title: title,
       description: description,
     });
