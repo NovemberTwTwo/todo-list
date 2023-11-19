@@ -10,6 +10,7 @@ import {
   passwordErrorAction,
   passwordNullAction,
 } from '../../core/reducer/authReducer';
+import React from 'react';
 
 const passwordRegex: RegExp =
   /^.*(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\[\]\{\}\/\(\)\.\?\<\,\>\!\@\#\$\%\^\&]).*$/;
@@ -85,4 +86,4 @@ const PasswordInput = ({
   );
 };
 
-export default PasswordInput;
+export default React.memo(PasswordInput);

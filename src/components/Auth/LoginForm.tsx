@@ -7,7 +7,7 @@ import {
   emailErrorAction,
   passwordErrorAction,
 } from '../../core/reducer/authReducer';
-import { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import PasswordInput from './PasswordInput';
 import Button from '../UI/Button';
 import { FlexBox } from '../UI/Boxes';
@@ -103,4 +103,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default React.memo(LoginForm);

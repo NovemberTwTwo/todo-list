@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, FlexBox } from '../UI/Boxes';
 import Card from '../UI/Card';
-import { ArrowIcon, CalenderIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
+import { ArrowIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
 import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
@@ -61,19 +61,6 @@ const TodoInput = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}></CommonInput>
-        </Box>
-        <Box $margin='0 0 42px 0'>
-          <Label>
-            <CalenderIcon $margin='0 4px 0 0' />
-            기간
-          </Label>
-          <FlexBox
-            $width='100%'
-            $justifyContents='space-between'
-            $margin='6px 0 0 0'>
-            <CommonInput type='date' $padding='0 10px 0 10px' $width='45%' />
-            <CommonInput type='date' $padding='0 10px 0 10px' $width='45%' />
-          </FlexBox>
         </Box>
         <Box $margin='0 0 42px 0'>
           <Label>

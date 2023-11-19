@@ -11,6 +11,7 @@ import {
   emailNullAction,
 } from '../../core/reducer/authReducer';
 import Button from '../UI/Button';
+import React from 'react';
 
 const emailRegex: RegExp = /\w+@[a-z]+.[a-z.]+/;
 
@@ -75,4 +76,4 @@ const EmailInput = ({
   );
 };
 
-export default EmailInput;
+export default React.memo(EmailInput);
