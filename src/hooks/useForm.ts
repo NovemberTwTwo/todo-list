@@ -29,11 +29,13 @@ const formDataValidator = (errorData: ErrorData): void => {
 };
 
 const debouncer = (
-  callback: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  callback: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void,
   delay: number,
 ) => {
   let timer: ReturnType<typeof setTimeout> | number | undefined;
-  return (arg: React.ChangeEvent<HTMLInputElement>) => {
+  return (arg: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(callback, delay, arg);
   };
@@ -48,7 +50,11 @@ const useForm = (
     errorObjectGenerator(initialFormData),
   );
 
-  const register = (key: string, validators: { (value: any): void }[]) => {
+  const register = (
+    key: string,
+    validators: { (value: any): void }[] = [],
+    isValidateDebounce: boolean = true,
+  ) => {
     const validateData = () => {
       try {
         validators.forEach((validator) => {
@@ -59,7 +65,7 @@ const useForm = (
             return { ...prev, [key]: { isValid: true, errorMessage: '' } };
           });
       } catch (e: any) {
-        if (formData.current[key].errorMessage !== e.message)
+        if (errorData[key].errorMessage !== e.message)
           setErrorData((prev) => {
             return {
               ...prev,
@@ -69,13 +75,15 @@ const useForm = (
       }
     };
 
-    const validateDebounce = debouncer((e) => {
+    const changeValueDebounce = debouncer((e) => {
       formData.current[key] = e.target.value;
-      validateData();
+      if (isValidateDebounce) validateData();
     }, 300);
 
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-      validateDebounce(e);
+    const changeHandler = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      changeValueDebounce(e);
     };
 
     return { onChange: changeHandler, onBlur: validateData };

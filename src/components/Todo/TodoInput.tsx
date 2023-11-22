@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box, FlexBox } from '../UI/Boxes';
 import Card from '../UI/Card';
 import { ArrowIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
@@ -8,28 +7,25 @@ import TextBox from '../UI/TextBox';
 import { getDatabase, ref, set } from 'firebase/database';
 import Button from './../UI/Button';
 import useUserTokenState from '../../hooks/useUserTokenState';
+import useForm from '../../hooks/useForm';
+import {
+  maxLengthValidator,
+  nullValidator,
+} from '../../core/validators/textValidators';
 
 const TodoInput = () => {
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
   const { userToken } = useUserTokenState();
-
-  const writeTestData = () => {
-    const db = getDatabase();
-    set(ref(db, `users/${userToken}/todos`), {
-      title: title,
-      description: description,
-    });
-  };
-
-  const todoSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    writeTestData();
-  };
+  const { handleSubmit, errorData, register } = useForm(
+    { title: null, description: '' },
+    (formData) => {
+      const db = getDatabase();
+      set(ref(db, `users/${userToken}/todos`), formData);
+    },
+  );
 
   return (
     <Card $start={1} $end={7}>
-      <form onSubmit={todoSubmitHandler}>
+      <form onSubmit={handleSubmit}>
         <FlexBox $justifyContents='space-between'>
           <TextBox $fontSize={28} $lineHeight={32} $margin='0 0 0 0'>
             목표 추가하기
@@ -58,9 +54,15 @@ const TodoInput = () => {
             name='GoalName'
             $padding='0 10px 0 10px'
             $width='100%'
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}></CommonInput>
+            {...register('title', [nullValidator(), maxLengthValidator(24)])}
+          />
+          <TextBox
+            $fontSize={14}
+            $margin={'4px 10px 0 10px'}
+            $warning={!errorData['title'].isValid}
+            $height='40px'>
+            {errorData['title'].errorMessage}
+          </TextBox>
         </Box>
         <Box $margin='0 0 42px 0'>
           <Label>
@@ -81,9 +83,8 @@ const TodoInput = () => {
               (target as HTMLTextAreaElement).style.height =
                 (target as HTMLTextAreaElement).scrollHeight + 'px';
             }}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}></CommonInput>
+            {...register('description')}
+          />
         </Box>
         <Box>
           <Button type='submit'>TestSubmit</Button>
