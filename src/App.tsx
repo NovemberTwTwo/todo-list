@@ -6,6 +6,7 @@ import LoginForm from './components/Auth/LoginForm';
 import RegisterForm from './components/Auth/RegisterForm';
 import { useEffect, useReducer, useState } from 'react';
 import {
+  errorAction,
   popAction,
   routeInitialState,
   routeReducer,
@@ -17,6 +18,13 @@ import {
 import Route from './components/Route/Route';
 import TodoInput from './components/Todo/TodoInput';
 import UserTokenContext from './core/context/UserTokenContext';
+import {
+  LOGIN_ROUTE,
+  MAIN_ROUTE,
+  REGISTER_ROUTE,
+  ROUTES,
+  TODO_CREATE_ROUTE,
+} from './core/constant/constants';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
@@ -24,7 +32,12 @@ function App() {
 
   const handleSessionRoute = () => {
     //eslint-disable-next-line no-restricted-globals
-    dispatch(popAction(location.pathname));
+    const path = location.pathname;
+    if (ROUTES.includes(path)) {
+      dispatch(popAction(path));
+      return;
+    }
+    dispatch(errorAction(path));
   };
 
   useEffect(() => {
@@ -42,16 +55,16 @@ function App() {
         <RouterDispatchContext.Provider value={dispatch}>
           <RouterStateContext.Provider value={sessionState.url}>
             <Grid>
-              <Route url='/'>
+              <Route url={MAIN_ROUTE}>
                 <div></div>
               </Route>
-              <Route url='/login'>
+              <Route url={LOGIN_ROUTE}>
                 <LoginForm />
               </Route>
-              <Route url='/register'>
+              <Route url={REGISTER_ROUTE}>
                 <RegisterForm />
               </Route>
-              <Route url='/formtest'>
+              <Route url={TODO_CREATE_ROUTE}>
                 <TodoInput />
               </Route>
             </Grid>

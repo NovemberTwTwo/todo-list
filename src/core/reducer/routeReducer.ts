@@ -1,8 +1,10 @@
 const ROUTE = 'ROUTE';
-const POP_STATE = 'POP_STATE';
+const ROUTE_POP_STATE = 'ROUTE_POP_STATE';
+const ROUTE_ERROR = 'ROUTE_ERROR';
 
 interface RouteData {
   url: string;
+  isError: boolean;
 }
 
 interface RouteAction {
@@ -13,6 +15,7 @@ interface RouteAction {
 const routeInitialState: RouteData = {
   // eslint-disable-next-line no-restricted-globals
   url: location.pathname,
+  isError: false,
 };
 
 const routeReducer = (state: RouteData, action: RouteAction): RouteData => {
@@ -21,11 +24,18 @@ const routeReducer = (state: RouteData, action: RouteAction): RouteData => {
       return {
         ...state,
         url: action.payload,
+        isError: false,
       };
-    case POP_STATE:
+    case ROUTE_POP_STATE:
       return {
         ...state,
         url: action.payload,
+      };
+    case ROUTE_ERROR:
+      return {
+        ...state,
+        url: action.payload,
+        isError: true,
       };
     default:
       throw new Error();
@@ -38,8 +48,12 @@ const routeAction = (url: string): RouteAction => {
 };
 
 const popAction = (url: string): RouteAction => {
-  return { type: POP_STATE, payload: url };
+  return { type: ROUTE_POP_STATE, payload: url };
 };
 
-export { routeInitialState, routeReducer, routeAction, popAction };
+const errorAction = (url: string): RouteAction => {
+  return { type: ROUTE_ERROR, payload: url };
+};
+
+export { routeInitialState, routeReducer, routeAction, popAction, errorAction };
 export type { RouteAction };
