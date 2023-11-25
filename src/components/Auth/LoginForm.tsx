@@ -11,16 +11,21 @@ import React, { useEffect, useReducer, useState } from 'react';
 import PasswordInput from './PasswordInput';
 import Button from '../UI/Button';
 import { FlexBox } from '../UI/Boxes';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { firebaseAuth } from '../../core/firebase/firebaseConfig';
 import useRouterDispatch from '../../hooks/useRouterDispatch';
 import { routeAction } from '../../core/reducer/routeReducer';
-import useUserTokenState from '../../hooks/useUserTokenState';
+import useUserIdState from '../../hooks/useUserIdState';
+import { TODO_CREATE_ROUTE } from '../../core/constant/constants';
 
 const LoginForm = () => {
   const [loginData, dispatch] = useReducer(authReducer, authInitialState);
   const [authErrorMessage, setAuthErrorMessage] = useState<string>('');
-  const { setUserToken } = useUserTokenState();
+  const { setUserId } = useUserIdState();
   const routeDispatch = useRouterDispatch();
 
   useEffect(() => {
@@ -28,18 +33,26 @@ const LoginForm = () => {
   }, [loginData]);
 
   const firebaseLogin = async () => {
-    signInWithEmailAndPassword(
-      firebaseAuth,
-      loginData.email.data,
-      loginData.password.data,
-    )
-      .then((userCredential) => {
-        setUserToken(userCredential.user.uid);
-        routeDispatch(routeAction('/'));
+    setPersistence(firebaseAuth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(
+          firebaseAuth,
+          loginData.email.data,
+          loginData.password.data,
+        )
+          .then((userCredential) => {
+            setUserId(userCredential.user.uid);
+            routeDispatch(routeAction(TODO_CREATE_ROUTE));
+          })
+          .catch(({ code }) => {
+            if (code === 'auth/invalid-login-credentials')
+              setAuthErrorMessage(
+                '잘못된 비밀번호 혹은 존재하지 않는 계정입니다.',
+              );
+          });
       })
-      .catch(({ code }) => {
-        if (code === 'auth/invalid-login-credentials')
-          setAuthErrorMessage('잘못된 비밀번호 혹은 존재하지 않는 계정입니다.');
+      .catch((e) => {
+        console.log(e);
       });
   };
 

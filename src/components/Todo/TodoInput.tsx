@@ -4,22 +4,27 @@ import { ArrowIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
 import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, push, ref, set } from 'firebase/database';
 import Button from './../UI/Button';
-import useUserTokenState from '../../hooks/useUserTokenState';
+import useUserIdState from '../../hooks/useUserIdState';
 import useForm from '../../hooks/useForm';
 import {
   maxLengthValidator,
-  nullValidator,
+  stringNullValidator,
 } from '../../core/validators/textValidators';
 
 const TodoInput = () => {
-  const { userToken } = useUserTokenState();
+  const { userId } = useUserIdState();
   const { handleSubmit, errorData, register } = useForm(
     { title: null, description: '' },
     (formData) => {
-      const db = getDatabase();
-      set(ref(db, `users/${userToken}/todos`), formData);
+      try {
+        const db = getDatabase();
+        console.log(`users/${userId}/todos`);
+        set(ref(db, `users/${userId}/todos`), formData);
+      } catch (e: any) {
+        console.log(e.message);
+      }
     },
   );
 
@@ -54,7 +59,10 @@ const TodoInput = () => {
             name='GoalName'
             $padding='0 10px 0 10px'
             $width='100%'
-            {...register('title', [nullValidator(), maxLengthValidator(24)])}
+            {...register('title', [
+              stringNullValidator(),
+              maxLengthValidator(24),
+            ])}
           />
           <TextBox
             $fontSize={14}

@@ -17,7 +17,7 @@ import {
 } from './core/context/RouterContext';
 import Route from './components/Route/Route';
 import TodoInput from './components/Todo/TodoInput';
-import UserTokenContext from './core/context/UserTokenContext';
+import UserIdContext from './core/context/UserIdContext';
 import {
   LOGIN_ROUTE,
   MAIN_ROUTE,
@@ -25,10 +25,12 @@ import {
   ROUTES,
   TODO_CREATE_ROUTE,
 } from './core/constant/constants';
+import { firebaseAuth } from './core/firebase/firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
-  const [userToken, setUserToken] = useState<string>('');
+  const [userId, setUserId] = useState<string>('');
 
   const handleSessionRoute = () => {
     //eslint-disable-next-line no-restricted-globals
@@ -41,6 +43,14 @@ function App() {
   };
 
   useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+      if (user) {
+        setUserId(user.uid);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     (() => {
       window.addEventListener('popstate', handleSessionRoute);
     })();
@@ -51,7 +61,7 @@ function App() {
 
   return (
     <ThemeProvider theme={lightTheme}>
-      <UserTokenContext.Provider value={{ userToken, setUserToken }}>
+      <UserIdContext.Provider value={{ userId, setUserId }}>
         <RouterDispatchContext.Provider value={dispatch}>
           <RouterStateContext.Provider value={sessionState.url}>
             <Grid>
@@ -71,7 +81,7 @@ function App() {
             </Grid>
           </RouterStateContext.Provider>
         </RouterDispatchContext.Provider>
-      </UserTokenContext.Provider>
+      </UserIdContext.Provider>
     </ThemeProvider>
   );
 }

@@ -24,9 +24,9 @@ const equalLengthValidator = (length: number): Validator => {
   };
 };
 
-const nullValidator = (): Validator => {
-  return (formData: string) => {
-    if (formData.replaceAll(' ', '').length === 0)
+const stringNullValidator = (): Validator => {
+  return (formData: string | null) => {
+    if (formData === null || formData.replaceAll(' ', '').length === 0)
       throw new Error(`해당하는 정보는 반드시 입력되어야 합니다.`);
     return;
   };
@@ -51,7 +51,7 @@ export {
   minLengthValidator,
   maxLengthValidator,
   equalLengthValidator,
-  nullValidator,
+  stringNullValidator,
   blankValidator,
   regexValidator,
 };
