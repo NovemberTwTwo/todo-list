@@ -67,6 +67,7 @@ function App() {
               <Route url={TODO_CREATE_ROUTE}>
                 <TodoInput />
               </Route>
+              {sessionState.isError && <div>ErrorPage</div>}
             </Grid>
           </RouterStateContext.Provider>
         </RouterDispatchContext.Provider>
