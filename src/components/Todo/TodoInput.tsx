@@ -4,7 +4,7 @@ import { ArrowIcon, DocumentIcon, TitleIcon } from '../UI/Icons';
 import { CommonInput } from '../UI/Inputs';
 import Label from '../UI/Label';
 import TextBox from '../UI/TextBox';
-import { getDatabase, push, ref, set } from 'firebase/database';
+import { getDatabase, push, ref } from 'firebase/database';
 import Button from './../UI/Button';
 import useUserIdState from '../../hooks/useUserIdState';
 import useForm from '../../hooks/useForm';

@@ -29,6 +29,7 @@ import {
 } from './core/constant/constants';
 import { firebaseAuth } from './core/firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
+import TodoList from './components/Todo/TodoList';
 
 function App() {
   const [sessionState, dispatch] = useReducer(routeReducer, routeInitialState);
@@ -82,7 +83,7 @@ function App() {
                 <TodoInput />
               </Route>
               <Route url={TODO_LIST_ROUTE}>
-                <div></div>
+                <TodoList />
               </Route>
               {sessionState.isError && <div>ErrorPage</div>}
             </Grid>
