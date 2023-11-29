@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import useUserIdState from '../../hooks/useUserIdState';
 import { child, get, getDatabase, ref } from 'firebase/database';
+import Todo from './Todo';
+import Card from '../UI/Card';
 
 const TodoList = () => {
   const { userId } = useUserIdState();
@@ -20,16 +22,14 @@ const TodoList = () => {
 
   if (data)
     return (
-      <div>
+      <Card $start={1} $end={7}>
         {Object.keys(data).map((key) => {
+          const { title, description } = data[key];
           return (
-            <div key={key}>
-              <h3>{data[key].title}</h3>
-              <p>{data[key].description}</p>
-            </div>
+            <Todo key={key} id={key} title={title} description={description} />
           );
         })}
-      </div>
+      </Card>
     );
   return <div></div>;
 };

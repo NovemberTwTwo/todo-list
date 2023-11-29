@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as Arrow } from '../../assets/icons/arrow-icon.svg';
 import { ReactComponent as User } from '../../assets/icons/user-icon.svg';
 import { ReactComponent as Check } from '../../assets/icons/check-icon.svg';
@@ -13,13 +13,21 @@ import { ReactComponent as Document } from '../../assets/icons/document-icon.svg
 import { BoxSizing, BoxSpacing, IconColor } from './types/types';
 import { spacing } from './mixin';
 
-interface IconProps extends BoxSizing, BoxSpacing, IconColor {}
+interface IconProps extends BoxSizing, BoxSpacing, IconColor {
+  $strokeWidth?: number;
+}
 
 const ArrowIcon = styled(Arrow)<IconProps>`
   width: ${({ $width }) => ($width ? $width : '10px')};
   height: ${({ $height }) => ($height ? $height : '10px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
@@ -33,6 +41,12 @@ const UserIcon = styled(User)<IconProps>`
 
   ${spacing}
 
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
+
   path {
     stroke: ${(props) =>
       props.$stroke ? props.$stroke : props.theme.colors.secondary};
@@ -44,6 +58,12 @@ const CheckIcon = styled(Check)<IconProps>`
   height: ${({ $height }) => ($height ? $height : '16px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
@@ -57,6 +77,12 @@ const EmailIcon = styled(Email)<IconProps>`
 
   ${spacing}
 
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
+
   path {
     stroke: ${(props) =>
       props.$stroke ? props.$stroke : props.theme.colors.secondary};
@@ -68,6 +94,12 @@ const KeyIcon = styled(Key)<IconProps>`
   height: ${({ $height }) => ($height ? $height : '16px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
@@ -81,6 +113,12 @@ const SearchIcon = styled(Search)<IconProps>`
 
   ${spacing}
 
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
+
   path {
     stroke: ${(props) =>
       props.$stroke ? props.$stroke : props.theme.colors.secondary};
@@ -92,6 +130,12 @@ const EyeClosedIcon = styled(EyeClosed)<IconProps>`
   height: ${({ $height }) => ($height ? $height : '28px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
@@ -105,6 +149,12 @@ const EyeOpenedIcon = styled(EyeOpened)<IconProps>`
 
   ${spacing}
 
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
+
   path {
     stroke: ${(props) =>
       props.$stroke ? props.$stroke : props.theme.colors.main};
@@ -117,6 +167,12 @@ const TitleIcon = styled(Title)<IconProps>`
 
   ${spacing}
 
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
+
   path {
     stroke: ${(props) =>
       props.$stroke ? props.$stroke : props.theme.colors.secondary};
@@ -128,6 +184,12 @@ const CalenderIcon = styled(Calender)<IconProps>`
   height: ${({ $height }) => ($height ? $height : '16px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
@@ -144,6 +206,12 @@ const DocumentIcon = styled(Document)<IconProps>`
   height: ${({ $height }) => ($height ? $height : '16px')};
 
   ${spacing}
+
+  ${({ $strokeWidth }) =>
+    $strokeWidth &&
+    css`
+      stroke-width: ${$strokeWidth}px;
+    `}
 
   path {
     stroke: ${(props) =>
