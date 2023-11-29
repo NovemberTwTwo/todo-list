@@ -1,13 +1,8 @@
 import styled, { css } from 'styled-components';
 import { spacing } from './mixin';
-import { BoxSizing, BoxSpacing, FontSizing } from './types/types';
+import { BoxDesign, BoxSizing, BoxSpacing, FontSizing } from './types/types';
 
-interface ButtonProps extends BoxSizing, BoxSpacing, FontSizing {
-  $backgroundColor?: string;
-  $borderColor?: string;
-  $borderRadius?: number;
-  $fontColor?: string;
-}
+interface ButtonProps extends BoxSizing, BoxSpacing, FontSizing, BoxDesign {}
 
 const Button = styled.button<ButtonProps>`
   width: ${({ $width }) => ($width ? $width : '84px')};

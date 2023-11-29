@@ -11,10 +11,14 @@ interface TodoData {
 
 const Todo = ({ id, title, description }: TodoData) => {
   return (
-    <Box>
+    <Box
+      $borderColor='black'
+      $borderRadius={10}
+      $padding='0 20px 0 20px'
+      $margin='0 0 20px 0'>
       <FlexBox $justifyContents='space-between' $alignItems='center'>
-        <h2>{title}</h2>
-        <FlexBox $width='14%' $justifyContents='space-between'>
+        <h3>{title}</h3>
+        <FlexBox $width='16%' $justifyContents='space-between'>
           <Button
             $width='20px'
             $height='20px'
@@ -23,8 +27,8 @@ const Todo = ({ id, title, description }: TodoData) => {
             $padding='0 0 0 0'
             $borderRadius={5}>
             <CheckIcon
-              $width='16px'
-              $height='16px'
+              $width='12px'
+              $height='12px'
               $strokeWidth={1.5}
               $stroke='black'
             />
@@ -35,7 +39,10 @@ const Todo = ({ id, title, description }: TodoData) => {
             $backgroundColor='transparent'
             $borderColor='black'
             $padding='0 0 0 0'
-            $borderRadius={5}>
+            $borderRadius={5}
+            $fontColor='black'
+            $fontSize={17}
+            $lineHeight={0.1}>
             +
           </Button>
         </FlexBox>

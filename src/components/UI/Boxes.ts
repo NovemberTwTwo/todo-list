@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { BoxSizing, BoxSpacing } from './types/types';
+import styled, { css } from 'styled-components';
+import { BoxDesign, BoxSizing, BoxSpacing } from './types/types';
 import { spacing } from './mixin';
 
-interface BoxProps extends BoxSizing, BoxSpacing {}
+interface BoxProps extends BoxSizing, BoxSpacing, BoxDesign {}
 interface FlexBoxProps extends BoxProps {
   $justifyContents?: string;
   $alignItems?: string;
@@ -13,6 +13,24 @@ const Box = styled.div<BoxProps>`
   height: ${({ $height }) => ($height ? $height : 'auto')};
 
   ${spacing}
+
+  ${({ $borderColor }) =>
+    $borderColor &&
+    css`
+      border: solid 1px ${$borderColor};
+    `}
+
+  ${({ $borderRadius }) =>
+    $borderRadius &&
+    css`
+      border-radius: ${$borderRadius}px;
+    `}
+
+  ${({ $backgroundColor }) =>
+    $backgroundColor &&
+    css`
+      border-radius: ${$backgroundColor}px;
+    `}
 `;
 
 const FlexBox = styled.div<FlexBoxProps>`
