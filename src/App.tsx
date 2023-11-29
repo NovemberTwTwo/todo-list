@@ -8,6 +8,7 @@ import { useEffect, useReducer, useState } from 'react';
 import {
   errorAction,
   popAction,
+  routeAction,
   routeInitialState,
   routeReducer,
 } from './core/reducer/routeReducer';
@@ -24,6 +25,7 @@ import {
   REGISTER_ROUTE,
   ROUTES,
   TODO_CREATE_ROUTE,
+  TODO_LIST_ROUTE,
 } from './core/constant/constants';
 import { firebaseAuth } from './core/firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -46,7 +48,9 @@ function App() {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         setUserId(user.uid);
+        return;
       }
+      dispatch(routeAction(LOGIN_ROUTE));
     });
   }, []);
 
@@ -76,6 +80,9 @@ function App() {
               </Route>
               <Route url={TODO_CREATE_ROUTE}>
                 <TodoInput />
+              </Route>
+              <Route url={TODO_LIST_ROUTE}>
+                <div></div>
               </Route>
               {sessionState.isError && <div>ErrorPage</div>}
             </Grid>

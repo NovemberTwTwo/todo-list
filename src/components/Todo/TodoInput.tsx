@@ -20,7 +20,6 @@ const TodoInput = () => {
     (formData) => {
       try {
         const db = getDatabase();
-        console.log(`users/${userId}/todos`);
         push(ref(db, `users/${userId}/todos`), formData);
       } catch (e: any) {
         console.log(e.message);
